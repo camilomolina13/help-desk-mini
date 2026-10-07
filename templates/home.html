@@ -33,13 +33,13 @@
 
             {% endfor %}
         </div>
-    {% endif %}
+    {% endif %}   
 {% endwith %}
 
 <!-- Título -->
 <div class="mb-6">
     <h1 class="text-3xl font-bold text-gray-800">
-        Bienvenido a Flask Notes
+        Bienvenido a Help Desk mini
     </h1>
 </div>
 
@@ -50,7 +50,7 @@
         Todos los tickets
     </h2>
 
-    <a href="{{ url_for('create_ticket') }}"
+    <a href="{{ url_for('tickets.create_ticket') }}"
         class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
         + Nuevo ticket
     </a>
@@ -70,21 +70,23 @@
         </h2>
 
         <p class="text-gray-700 mb-4">
-            {{ ticket.content[:140] }}
-            {% if ticket.content|length > 140 %}...{% endif %}
+            {{ ticket.description[:140] }}
+            {% if ticket.description|length > 140 %}...{% endif %}
         </p>
-        {#
+        <p class="text-gray-700 mb-4">
+            {{ ticket.status }}
+        </p>
         <div class="flex justify-end space-x-2">
 
-            <a href="{{ url_for('notes.edit_note', id=note.id) }}"
+            <a href="{{ url_for('tickets.edit_ticket', id=ticket.id) }}"
                 class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-                title="Editar Nota">
+                title="Editar Ticket">
                 Editar
             </a>
 
             <form method="POST"
-                action="{{ url_for('notes.delete_note', id=note.id) }}"
-                onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta nota?');">
+                action="{{ url_for('tickets.delete_ticket', id=ticket.id) }}"
+                onsubmit="return confirm('¿Estás seguro de que quieres eliminar este ticket?');">
 
                 <button type="submit"
                     class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
@@ -95,7 +97,6 @@
             </form>
 
         </div>
-        #}
     </div>
 
     {% endfor %}
@@ -105,7 +106,7 @@
 {% else %}
 
 <p class="text-gray-500">
-    No hay notas disponibles. ¡Comienza creando una!
+    No hay tickets disponibles. ¡Comienza creando uno!
 </p>
 
 {% endif %}
