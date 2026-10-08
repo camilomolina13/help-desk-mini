@@ -9,7 +9,7 @@ class Config:
     SECRET_KEY = "Juan3892098."
 
 class TestConfig:
-    SQLALCHEMY_DATABASE_URI = "sqlite:///test_notes.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///test_tickets.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = "this-is-not-secret"
     TESTING = True

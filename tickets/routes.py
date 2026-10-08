@@ -36,7 +36,7 @@ def create_ticket():
         # Validar longitud del título
         if len(title) < 10:
             flash('El título es muy corto. Mínimo 10 caracteres.', 'error')
-            return render_template('create_.html')
+            return render_template('create_ticket.html')
 
         # Validar longitud del contenido
         if len(description) < 50:
@@ -47,7 +47,7 @@ def create_ticket():
         new_ticket = Ticket(
             title = title,
             description = description,
-            user_id = 1
+            user_id = session['user_id']
         )
 
         db.session.add(new_ticket)
